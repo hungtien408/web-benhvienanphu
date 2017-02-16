@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="site-sub.master.cs" Inherits="site_sub" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="banner-info">
+        <asp:ContentPlaceHolder ID="bannerinfo" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="container">
+        <div class="wrapper-content">
+            <div class="ColContent">
+                <asp:ContentPlaceHolder ID="colmain" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="ColAside">
+                <div class="aside-list">
+                    <div class="icon-list">
+                        <img src="assets/images/logo-list.jpg" alt="" />
+                    </div>
+                    <asp:ContentPlaceHolder ID="asidelist" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="aside-hotline">
+                    <h1>CẤP CỨU 24/7</h1>
+                    <div class="hotline-bg">
+                        <span>+84 3969 1185</span>
+                    </div>
+                </div>
+                <div class="aside-mail">
+                    <h1>ĐĂNG KÝ NHẬN TIN</h1>
+                    <div class="mail-input">
+                        <asp:TextBox ID="TextBox3" CssClass="mail-textbox" runat="server" placeholder="Nhập email để nhận cái bản tin..."></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+

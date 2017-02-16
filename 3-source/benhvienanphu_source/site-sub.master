@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="site-sub.master.cs" Inherits="site_sub" %>
+
+<%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
+<%@ Register TagPrefix="asp" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="banner-info">
+        <asp:ContentPlaceHolder ID="bannerinfo" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="container">
+        <div class="wrapper-content">
+            <div class="ColContent">
+                <asp:ContentPlaceHolder ID="colmain" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="ColAside">
+                <div class="aside-list">
+                    <div class="icon-list">
+                        <img src="assets/images/logo-list.jpg" alt="" />
+                    </div>
+                    <asp:ContentPlaceHolder ID="asidelist" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="aside-hotline">
+                    <h1>CẤP CỨU 24/7</h1>
+                    <asp:ListView ID="lstHotlineCapCuu" runat="server" DataSourceID="odsInfo"
+                        EnableModelValidation="True">
+                        <ItemTemplate>
+                            <div class="hotline-bg">
+                                <span><%# Eval("TagEn") %></span>
+                            </div>
+                        </ItemTemplate>
+                        <LayoutTemplate>
+                            <span runat="server" id="itemPlaceholder" />
+                        </LayoutTemplate>
+                    </asp:ListView>
+                    <asp:ObjectDataSource ID="odsInfo" runat="server" SelectMethod="ProjectSelectAll" TypeName="TLLib.Project">
+                        <SelectParameters>
+                            <asp:Parameter Name="StartRowIndex" Type="String" />
+                            <asp:Parameter Name="EndRowIndex" Type="String" />
+                            <asp:Parameter Name="Keyword" Type="String" />
+                            <asp:Parameter Name="ProjectTitle" Type="String" />
+                            <asp:Parameter Name="Description" Type="String" />
+                            <asp:Parameter DefaultValue="35" Name="ProjectCategoryID" Type="String" />
+                            <asp:Parameter Name="Tag" Type="String" />
+                            <asp:Parameter Name="IsHot" Type="String" />
+                            <asp:Parameter Name="IsNew" Type="String" />
+                            <asp:Parameter Name="IsShowOnHomePage" Type="String" />
+                            <asp:Parameter Name="FromDate" Type="String" />
+                            <asp:Parameter Name="ToDate" Type="String" />
+                            <asp:Parameter DefaultValue="True" Name="IsAvailable" Type="String" />
+                            <asp:Parameter Name="Priority" Type="String" />
+                            <asp:Parameter DefaultValue="True" Name="SortByPriority" Type="String" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </div>
+                <div class="aside-mail">
+                    <h1>ĐĂNG KÝ NHẬN TIN</h1>
+                    <div class="mail-input">
+                        <asp:TextBox ID="txtEmailNewLetter" CssClass="mail-textbox" runat="server"></asp:TextBox>
+                        <asp:TextBoxWatermarkExtender ID="txtEmailNewLetter_WatermarkExtender" runat="server"
+                            Enabled="True" WatermarkText="Nhập email để nhận cái bản tin..." TargetControlID="txtEmailNewLetter">
+                        </asp:TextBoxWatermarkExtender>
+                        <asp:RegularExpressionValidator CssClass="lb-error" ID="RegularExpressionValidator1"
+                            runat="server" ValidationGroup="EmailNewLetter" ControlToValidate="txtEmailNewLetter"
+                            ErrorMessage="Sai định dạng email!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtEmailNewLetter"
+                            ValidationGroup="EmailNewLetter" runat="server" ErrorMessage="Chưa nhập Email!"
+                            Display="Dynamic"></asp:RequiredFieldValidator>
+                        <div class="email-button">
+                            <asp:Button ID="btnNewLetter" CssClass="email-btn corner" runat="server" Text="Gửi" ValidationGroup="EmailNewLetter"
+                                OnClick="btnNewLetter_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+
